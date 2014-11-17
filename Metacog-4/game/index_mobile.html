@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-Type" content="text/html; charset=utf-8"/> 
+        <link rel="shortcut icon" href="resources/favicon.ico">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>MateMarote - Ghost</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/canvas_mobile.css" />
+        <script src="libs/jquery-2.0.3.js"></script>        
+        <script src="libs/jstorage.js"></script>
+
+        <script>
+            //shared resources
+            var server = location.origin +"/";
+            var offline = false;
+            var api = "resources/front/api/3.0/";
+            if (location.host === "localhost:8383")
+                offline = true;
+            if (!offline) {
+                console.log("Loading online resources");
+                document.write("<script src='" + server + api + "statusApp.js'><\/script>");
+                document.write("<script src='" + server + api + "localStorage.js'><\/script>");
+                document.write("<script src='" + server + api + "languages.js'><\/script>");
+                document.write("<script src='" + server + api + "Locale.js'><\/script>");
+                document.write("<script src='" + server + api + "GraphicsExt.js'><\/script>");
+                document.write("<script src='" + server + api + "Preloader.js'><\/script>");
+                document.write("<script src='" + server + api + "Random.js'><\/script>");
+                document.write("<script src='" + server + api + "Time.js'><\/script>");
+                document.write("<script src='" + server + api + "Metrics.js'><\/script>");
+                document.write("<script src='" + server + api + "Checkpoints.js'><\/script>");
+                document.write("<script src='" + server + api + "Progress.js'><\/script>");
+                document.write("<script src='" + server + api + "MateMarote.js'><\/script>");
+                document.write("<script src='" + server + "resources/js/vendor/fastclick.js'><\/script>");
+            } else {
+                console.log("Offline mode, loading temporal resources");
+            }
+        </script>
+        <script> 
+            $(function() {
+                FastClick.attach(document.body);
+                console.log("Fastclick Attached");
+            });
+        </script>
+        <script>
+            if (offline) {
+                loadJS('statusApp', 'temp/statusApp.js');
+                loadJS('localStorage', 'temp/localStorage.js');
+                loadJS('languages', 'temp/languages.js');
+                loadJS('Locale', 'libs/Locale.js'); 
+                loadJS('Preloader', 'libs/Preloader.js'); 
+                loadJS('Random', 'libs/Random.js'); 
+                loadJS('Time', 'libs/Time.js'); 
+                loadJS('Metrics', 'libs/Metrics.js'); 
+                loadJS('Checkpoints', 'libs/Checkpoints.js'); 
+                loadJS('Progress', 'libs/Progress.js'); 
+                loadJS('MateMarote', 'libs/MateMarote.js'); 
+                loadJS('GraphicsExt', 'libs/GraphicsExt.js');
+                //loadJS('GlobalVars', 'libs/GlobalVars.js');
+                //loadJS('Semaphore', 'libs/Semaphore.js');
+                //loadJS('Engine', 'libs/Engine.js');
+            }
+            loadJS('GlobalVars', 'js/GlobalVars.js');
+            loadJS('Semaphore', 'js/Semaphore.js');
+            loadJS('Engine', 'js/Engine.js');
+            loadJS('preloadjs', 'libs/preloadjs-NEXT.min.js');
+            loadJS('createjs', 'libs/createjs-2013.09.25.min.js');
+            loadJS('soundjs', 'libs/soundjs-NEXT.min.js');
+            /** load OP*/
+            loadJS('Shape', 'js/Shape.js');
+            loadJS('ProgressBar', 'js/ProgressBar.js');
+            loadJS('Text', 'js/Text.js');
+            loadJS('SpriteButton', 'js/SpriteButton.js');
+            loadJS('Card', 'js/Card.js');
+            loadJS('CardsDeck', 'js/CardsDeck.js');
+            /** load OM*/
+            loadJS('ObjectsManifest', 'js/ObjectsManifest.js');
+            /** load GC*/
+            loadJS('GameConfig', 'js/GameConfig.js');
+            /** laod MF*/
+            loadJS('Main', 'js/Main.js');
+
+            //Synchro
+            function loadJS(id, src) {
+                if (document.getElementById(id) !== null)
+                    return;
+                var js = document.createElement('script');
+                js.id = id;
+                js.async = false;
+                js.src = src;
+                document.getElementsByTagName('head')[0].appendChild(js);
+            }
+        </script>
+        <script>
+            if (!offline) {
+                $(function() {
+                    $("#includedHeader").load(server + "resources/front/header.html", function(responseTxt, statusTxt, xhr) {
+                        setBanner();
+                    });
+                    $("#includedFooter").load(server + "resources/front/footer.html", function(response, status, xhr) {
+                        sendVersion();
+                    });
+                    initPageMessages();
+
+                    loaded();
+                });
+            }
+        </script>
+    </head>
+
+    <body style="margin: 0px;">
+        <!--<div id="canvasWrapper">-->
+            <canvas id="stageCanvas" width="800" height="450" ></canvas>
+        <!--</div>-->
+        <script>
+            var canvas = $("#stageCanvas").get(0);
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        </script>
+    </body>
+
+
+</html>

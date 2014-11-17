@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<game name="Metacog" version="13">
+    <description>Metacog</description>
+    <level number="50">
+        <filename>level50</filename>
+        <keyvalue>true</keyvalue>
+    </level>
+    <languages prefix="GT">es,en</languages>
+</game>

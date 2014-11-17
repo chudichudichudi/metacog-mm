@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-Type" content="text/html; charset=utf-8"/> 
+        <link rel="shortcut icon" href="resources/favicon.ico">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Metacognición</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <script src="libs/jquery-2.0.3.js"></script>        
+        <script src="libs/jstorage.js"></script>
+        <script type="text/javascript" src="metacog.js"></script>
+
+        <script type="text/javascript" src="temp/statusApp.js"></script>
+        <script type="text/javascript" src="temp/localStorage.js"></script>
+        <script type="text/javascript" src="temp/languages.js"></script>
+        
+        <script type="text/javascript" src="libs/Locale.js"></script>
+        <script type="text/javascript" src="libs/Preloader.js"></script>
+        <script type="text/javascript" src="libs/Random.js"></script>
+        <script type="text/javascript" src="libs/Time.js"></script>
+        <script type="text/javascript" src="libs/Metrics.js"></script>
+        <script type="text/javascript" src="libs/Progress.js"></script>
+        <script type="text/javascript" src="libs/MateMarote.js"></script>
+        <script type="text/javascript" src="libs/GraphicsExt.js"></script>
+        <script type="text/javascript" src="libs/lz-string-1.3.3.js"></script>
+
+        <script type="text/javascript">
+            if (!window.location.origin) { // Some browsers (mainly IE) does not have this property, so we need to build it manually...
+                window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+            }
+            //shared resources
+            var server = location.origin +"/";
+            var offline = false;
+            if ( location.hostname === "localhost") offline = true;
+            if ( offline ) {
+                console.log("Offline mode, loading temporal resources");
+                loadJS('Locale', 'libs/Locale.js'); 
+            }
+            //Synchro
+            function loadJS(id, src) {
+                if (document.getElementById(id) !== null)
+                    return;
+                var js = document.createElement('script');
+                js.id = id;
+                js.async = false;
+                js.src = src;
+                document.getElementsByTagName('head')[0].appendChild(js);
+            }
+
+
+            $(document).ready( function() {
+                loadJS('GlobalVars', 'js/GlobalVars.js');
+                loadJS('Semaphore', 'js/Semaphore.js');
+                loadJS('Engine', 'libs/Engine.js');
+                loadJS('createjs', 'libs/createjs-2013.09.25.min.js');
+                loadJS('soundjs', 'libs/soundjs-NEXT.min.js');
+                /** load Objects Prototype*/
+                /** load Objects Manifest*/
+                loadJS('ObjectsManifest', 'js/ObjectsManifest.js');
+                /** load GC*/
+                loadJS('GameConfig', 'js/GameConfig.js');
+                /** laod MF*/
+                MateMarote.init();
+                metacog.start();
+            });
+            
+        </script>
+    </head>
+    <body>
+       
+    </body>
+</html>
+

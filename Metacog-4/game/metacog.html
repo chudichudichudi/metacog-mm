@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<title>Metacog</title>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="metacog.js"></script>
+	<script type="text/javascript">
+
+	function start_game() {
+		if ($('#sujeto').val().length <= 0) {
+			$('#sujeto').closest('.control-group').addClass('has-error');
+		} else {
+			$('.jumbotron').hide();
+			metacog.start();
+		}
+	}
+
+
+	</script>
+</head>
+
+<!-- <body onload="metacog.start()"> -->
+<body>
+	<div class="jumbotron">
+  		<h1>Metacognition</h1>
+  		<p>Earn points selecting the biggest circle</p>
+  		<p>Try to get the best score posible</p>
+  		<p>You can bet if the selected circle is the biggest of the group to get an advantage or play it safe and get a lower reward </p>
+  		<p>Sometimes you'll be asked to state your rate your confidence to very low to very high</p>
+  		
+  		<div class="row">
+  			<div class="col-xs-6 control-group">
+  				<input type="text" id="sujeto" class="form-control" placeholder="Username">
+  			</div>
+  			<div class="col-xs-6">
+  				<a class="btn btn-primary" role="button" onclick="start_game();">Start</a>
+  			</div>
+		</div>
+	</div> 
+</body>
+
+</html>
