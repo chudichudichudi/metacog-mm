@@ -19,7 +19,7 @@ metacog.SliderScene.create_slider_layer = function() {
 	var sliderWidth = config.screen_width - 250;
 	var defaultValue= sliderWidth / 2;
 	var width_pos = 125;
-  var height_pos = config.screen_height / 3;
+  var height_pos = config.screen_height / 2;
 
   var layer = new lime.Layer().setPosition(config.screen_width / 2,height_pos);
 
@@ -36,7 +36,7 @@ metacog.SliderScene.create_slider_layer = function() {
 
 		var value = e.position.x;
 		metacog.trials.current_trial.trust = Math.floor(( (value/sliderWidth).toFixed(2) * 100) + 50);
-		console.log(metacog.trials.current_trial.trust);
+		/*console.log(metacog.trials.current_trial.trust);*/
 
 		var zoomout_sure = new lime.animation.Spawn(
       new lime.animation.ScaleTo(20).setDuration(0.5),
@@ -62,11 +62,11 @@ metacog.SliderScene.create_slider_layer = function() {
 };
 
 metacog.SliderScene.create_done_button = function () {
-	var layer_button = new lime.Layer().setPosition(0,(config.screen_height / 6) * 3 );
-	var low_text = new lime.Label().setText("Very low").setFontSize(50).setFontWeight("bold");
-	low_text.setPosition(125,0);
-	var high_text = new lime.Label().setText("Very high").setFontSize(50).setFontWeight("bold");
-	high_text.setPosition(config.screen_width - 125,0);
+	var layer_button = new lime.Layer().setPosition(0,config.screen_height / 2);
+	var low_text = new lime.Label().setText("Ni idea.").setFontSize(30).setFontWeight("bold");
+	low_text.setPosition(70,0).setSize(200,50);
+	var high_text = new lime.Label().setText("Seguro.").setFontSize(30).setFontWeight("bold");
+	high_text.setPosition(config.screen_width - 55,0).setSize(200,50);
 
 	layer_button.appendChild(low_text);
 	layer_button.appendChild(high_text);

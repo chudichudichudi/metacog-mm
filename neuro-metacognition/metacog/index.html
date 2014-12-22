@@ -11,6 +11,7 @@
 
         <script src="libs/jquery-2.0.3.js"></script>        
         <script src="libs/jstorage.js"></script>
+        <script type="text/javascript" src="../closure/closure/goog/base.js"></script>
         <script type="text/javascript" src="metacog.js"></script>
 
         <script type="text/javascript" src="temp/statusApp.js"></script>
@@ -33,7 +34,7 @@
             }
             //shared resources
             var server = location.origin +"/";
-            var offline = false;
+            var offline = true;
             if ( location.hostname === "localhost") offline = true;
             if ( offline ) {
                 console.log("Offline mode, loading temporal resources");
@@ -63,7 +64,6 @@
                 /** load GC*/
                 loadJS('GameConfig', 'js/GameConfig.js');
                 /** laod MF*/
-
                 MateMarote.init();
                 metacog.start();
             });

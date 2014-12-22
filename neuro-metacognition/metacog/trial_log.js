@@ -31,17 +31,17 @@ metacog.TrialLog.prototype.get_win_loss_ratio = function() {
 
 metacog.TrialLog.prototype.sure_bet = function () {
   if (this.current_trial.winner === this.current_trial.choosed) {
-    this.score += config.payment_bet;
+    this.score += metacog.experiments.current_trial.payment_bet_right;
   } else {
-    this.score -= config.payment_bet_wrong;
+    this.score += metacog.experiments.current_trial.payment_bet_wrong;
     if(this.score <= 0){
       this.score = 0;
     }
   }
 }
 
-metacog.TrialLog.prototype.not_sure_bet = function () {
-  this.score += config.payment_opt_out;
+metacog.TrialLog.prototype.not_sure_bet = function (opt_out_payment) {
+  this.score += opt_out_payment;
 }
 
 metacog.TrialLog.prototype.get_scale = function(){
@@ -79,12 +79,12 @@ metacog.TrialLog.prototype.new_trial = function () {
     second_screen: "bet"
   };
   if (this.trial_results.length === 0){ //trial inicial
-    console.log('trial inicial')
+    /*console.log('trial inicial')*/
     trial.circle_size = goog.array.clone(config.circle_size);
     trial.winner = this.who_is_the_winner(trial.circle_size);
     trial.scale = this.initial_treshold;
   } else {
-    console.log('trial: ' + this.trial_results.length);
+    /*console.log('trial: ' + this.trial_results.length);*/
     trial.circle_size = this.generate_sizes(this.get_scale());
     trial.winner = this.who_is_the_winner(trial.circle_size);
     trial.scale = this.get_scale();
@@ -108,6 +108,6 @@ metacog.TrialLog.prototype.get_current_circle_size = function() {
 };
 
 metacog.TrialLog.prototype.set_elected_circle = function(circle) {
-  console.log('seleccione: ' + circle + ' el ganador es: ' + this.trial_results[this.trial_results.length - 1].winner);
+  /*console.log('seleccione: ' + circle + ' el ganador es: ' + this.trial_results[this.trial_results.length - 1].winner);*/
   this.trial_results[this.trial_results.length - 1].choosed = circle;
 };

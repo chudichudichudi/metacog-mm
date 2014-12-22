@@ -1,9 +1,0 @@
-# level 50
-payment_bet=50
-payment_bet_wrong=1
-payment_opt_out=50
-#Multiplo de 5
-trial_amount=10
-initial_treshold=0.8
-difficulty_step=1.5
-circle_color=[150,150,150,150,150,150,150,150,150]
