@@ -65,7 +65,7 @@ metacog.TrialLog.prototype.who_is_the_winner = function (circle_sizes) {
   return index_max;
 };
 
-metacog.TrialLog.prototype.new_trial = function () {
+metacog.TrialLog.prototype.create_trial_log = function () {
   var trial = {
     circle_size: [],
     choosed: -1,
@@ -76,7 +76,8 @@ metacog.TrialLog.prototype.new_trial = function () {
     scale: 0,
     trust: -1,
     type_of_test: "calibration",
-    second_screen: "bet"
+    second_screen: "bet",
+    score_bar: 0
   };
   if (this.trial_results.length === 0){ //trial inicial
     /*console.log('trial inicial')*/
@@ -89,6 +90,7 @@ metacog.TrialLog.prototype.new_trial = function () {
     trial.winner = this.who_is_the_winner(trial.circle_size);
     trial.scale = this.get_scale();
   }
+  trial.score_bar = metacog.trials.score / metacog.experiments.max_score;
   this.current_trial = trial;
   this.trial_results.push(trial);
 };

@@ -63,7 +63,7 @@ metacog.sync = function() {
   } catch(e){
     console.error("Error al sincronizar metricas");
   };
-  config.trials_synced += 5;
+  config.trials_synced = config.trials_synced + 5;
   metacog.trials_until_sync = 5;
 }
 
@@ -104,7 +104,7 @@ metacog.start = function(){
   config.size_pattern = stepConfig.size_pattern || config.size_pattern;
 
   metacog.experiments.trials = stepConfig.trials || [];
-  metacog.experiments.current_trial = metacog.setup_current_trial();
+  /*metacog.experiments.current_trial = metacog.setup_current_trial();*/
 
   //Pongo la cantidad de trials dependiendo de los parametros
   config.trials_synced = 0;
@@ -129,7 +129,7 @@ metacog.fill_missing_parameters = function(trial) {
   return trial;
 };
 
-metacog.generate_trial = function() {
+metacog.generate_default_trial = function() {
   if (Math.random() > 0.5) {
     return {payment_bet_right: config.payment_bet_right,
           payment_bet_wrong: config.payment_bet_wrong,
@@ -148,9 +148,10 @@ metacog.generate_trial = function() {
 metacog.setup_current_trial = function() {
   var trial;
   if (metacog.experiments.trials.length > 0) {
+    console.log( metacog.experiments.trials.length  );
     trial = metacog.fill_missing_parameters(metacog.experiments.trials.shift());
   } else {
-    trial = metacog.generate_trial();
+    trial = metacog.generate_default_trial();
     /*console.log(trial);*/
   }
   return trial;
@@ -167,7 +168,8 @@ metacog.create_trial = function() {
     metacog.director.replaceScene(end_scene);
     return;
   }
-  metacog.trials.new_trial();
+  metacog.trials.create_trial_log();
+  metacog.experiments.current_trial = metacog.setup_current_trial();
 
   var circle_scene = metacog.CircleScene.createScene(metacog.trials.get_scale());
 
@@ -185,11 +187,10 @@ metacog.new_trial = function () {
   metacog.end_trial();
   var t0 = goog.now();
   metacog.append_log();
+  metacog.trials_until_sync--;
 
   if (metacog.trials_until_sync === 0) {
     metacog.sync();
-  } else {
-    metacog.trials_until_sync--;
   }
 
   /*console.log(goog.now() - t0);*/
@@ -202,7 +203,7 @@ metacog.finish_selection = function() {
 };
 
 metacog.bet_or_trust = function() {
-  metacog.experiments.current_trial = metacog.setup_current_trial();
+  
   if(metacog.experiments.current_trial.bet_or_trust == "bet") {
     /*console.log("bet");*/
     metacog.bet();
