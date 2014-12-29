@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<game name="Metacog" version="41">
+<game name="Metacog" version="46">
     <description>Metacog</description>
     <level number="1">
         <filename>level1</filename>
