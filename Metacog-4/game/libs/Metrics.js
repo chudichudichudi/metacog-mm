@@ -84,7 +84,7 @@ Metrics.synchronize = function() {
     
     var totalUncompressed = JSON.stringify(sendData).length;
     */
-    for ( var i = 0; i < savedMetrics.length ; i++){
+    /*for ( var i = 0; i < savedMetrics.length ; i++){
         for (var tag in savedMetrics[i].metrics) {
             var value = savedMetrics[i].metrics[tag];
             //var leng = JSON.stringify(value).length;
@@ -94,7 +94,7 @@ Metrics.synchronize = function() {
             //var compression = 100 - ((savedMetrics[i].metrics[tag].length*100)/leng);
             //console.log("Data Compressed "+compression+"% - ["+leng+"/"+leng2+"]");
         }
-    }
+    }*/
 
     var date = new Date();
     var sendData = {"playerId": MateMarote.playerId, "gameflowStepId": MateMarote.gameId, "userSynchDate":date.getTime(), "measurements": savedMetrics};
@@ -119,11 +119,10 @@ Metrics.synchronize = function() {
         cache: false,
         data: sendData,
         beforeSend: Metrics.sendingMetrics,
-        success: Metrics.serverResponse,
         timeout: 15000,
         error: Metrics.serverError,
         statusCode: {
-            200: function() {
+            204: function() {
                 //console.log("200");
                 //console.log(newData);
             }

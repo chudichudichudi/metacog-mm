@@ -34,7 +34,7 @@
             //shared resources
             var server = location.origin +"/";
             var offline = false;
-            if ( location.hostname === "localhost") offline = true;
+            // if ( location.hostname === "localhost") offline = true;
             if ( offline ) {
                 console.log("Offline mode, loading temporal resources");
                 loadJS('Locale', 'libs/Locale.js'); 
