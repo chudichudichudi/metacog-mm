@@ -4,5 +4,5 @@ locale=en
 GT.gameOver=Game over!
 GT.gameFlow=Exit game
 
-GT.instructions.title=<b>Ghost training</b>
-GT.instructions.text=<p>El juego consiste en una sesión de “t” trials.</p><p>Cada trial tiene un mazo de cartas circulares que tienen dibujos de distintos fantasmas.<br>Los dibujos de los fantasmas vienen de a pares, o sea, por cada carta con un fantasma (digamos A), existe en el mazo, otra carta, que también tiene dibujado al mismo fantasma A.</p><p>El objetivo del jugador es encontrar todos los pares de cartas.<br>Cada vez que el jugador descubre un par de cartas con el mismo fantasma, debe seleccionar ambas cartas con el mouse (haciendo click sobre la carta). Si el par de cartas que seleccionó es efectivamente del mismo fantasma, entonces las cartas harán un efecto animado (rotar, un circulo verde, un ruido animador, etc) correspondiente al modo en el que se esta jugando (a,b,c) y luego serán dadas vueltas y pasarán a estar deshabilitadas. En caso contrario, harán otro efecto (circulo rojo, ruido molesto, etc) tambien correspondiente al modo en que se está jugando (a,b,c) y luego volverán a la normalidad.<p><p>Además, hay una barra de tiempo que si se agota, el trial termina como un trial perdido.<p><p>El jugador debe encontrar todos los pares de cartas antes que se le acabe el tiempo de la barra.<p>
+GT.instructions.title=<b>Metacog</b>
+GT.instructions.text=<p><p>

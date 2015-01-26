@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
 import json
@@ -154,7 +155,7 @@ def get_messages(lang):
         print "Couldn't load language", lang
         sys.exit(1)
 
-script_inject_game_data_and_redirect = """
+script_inject_game_data_and_redirect = u"""
 <html>
 <head>
 <script src="libs/jquery-2.0.3.js"></script>
